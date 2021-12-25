@@ -1,9 +1,16 @@
+import { prismaClient } from "../prisma"
 
 
 
-class ListPlaylistServices{
-  async handle(user_id){
+class ProfileUserService{
+  async handle(id){
+    const User = await prismaClient.user.findFirst({
+      where:{
+        id
+      }
+    })
     
+    return User
   }
 }
-export {ListPlaylistServices}
+export {ProfileUserService}

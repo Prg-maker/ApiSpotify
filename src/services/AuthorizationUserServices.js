@@ -16,7 +16,7 @@ class AuthorizationUserServices{
     
 
       const me =  await spotifyWebApi.getMe()
-  
+      
       const {id , display_name:name , email ,  type , country } = me.body
   
       const url = me.body.images
@@ -24,14 +24,67 @@ class AuthorizationUserServices{
       const urlPhoto = url[0].url
   
   
+      let playlist
   
       let user = await prismaClient.user.findFirst({
         where:{
           id
-        }
+        },
+        
       })
+
+      /*Playlist image*/ 
+
+
+     
+
+
   
       if(!user){
+
+        const data = await spotifyWebApi.getUserPlaylists(id)
+
+        let tracks = []
+
+        for( playlist of data.body.items){
+        
+          let tracks = await getPlaylistTracks(playlist.id , playlist.name)
+  
+          
+        }
+        console.log(playlist.id , playlist.name , playlist.images)
+
+
+      
+        
+        async function  getPlaylistTracks(playlistId , playlistName){
+          const data = await spotifyWebApi.getPlaylistTracks(playlistId , {
+            offset: 1,
+            limit: 100,
+            fields: 'items'
+          })
+  
+          let track 
+          
+  
+          for(let tracks_obj of data.body.items){
+            track = tracks_obj.track
+  
+            tracks.push(track)
+            
+          }
+          
+
+          return tracks
+  
+        }
+
+      
+        
+
+
+      let image = playlist.images[0].url
+
     
         user = await prismaClient.user.create({
           data:{
@@ -40,7 +93,24 @@ class AuthorizationUserServices{
             email,
             urlPhoto,
             type,
-            country
+            country,
+            playlist:{
+              create:{
+                userId: playlist.id,
+                name: playlist.name,
+                image: image,
+                musicas:{
+                  create:{
+                    id: '1',
+                    artist: "daniel",
+                    imageUrl: '5',
+                    name: "daniel",
+                    preview_url: "565"
+                  }
+                }
+              }
+            }
+           
           }
         })
       }
@@ -53,7 +123,8 @@ class AuthorizationUserServices{
           name: user.name,
           url_photo: user.urlPhoto,
           type: user.type,
-          country: user.country
+          country: user.country,
+          playlist: playlist
         }
       }, 
         process.env.JWT_TOKEN,
@@ -66,7 +137,7 @@ class AuthorizationUserServices{
   
       return {token , user}
     }catch(err){
-      return "Code erro"
+      return console.log(err)
     }
     
 

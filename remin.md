@@ -12,7 +12,8 @@
 # playlist 
 - id
 - name 
-- musics
+- musicas
+- image
 
 
 # musics 
@@ -22,15 +23,39 @@
 
 
 
+*Prima*
 
-plalist  PlayList[]
+*/
 
-model PlayList {
-  id   String @id
-  name String
 
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String?
+
+
+# home {
+  view: {
+    photo
+    name
+    country
+  },
+  enviar para uma pagina que mostra as playlist
 
 }
 
+
+# pag. playlist{
+  view:{
+    image da playlist
+    voltar para a home
+    todas as playlist
+    name 
+    id
+    musicas que contém
+    salvar playlist e musicas
+  }
+}
+
+# pag. music{
+  view:{
+    imagem da musica
+    nome
+  }
+} 

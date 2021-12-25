@@ -8,11 +8,35 @@ datasource db {
 }
 
 model User {
-  id       String @id
+  id       String     @id
   name     String
   email    String
   urlPhoto String
   type     String
   country  String
+  playlist PlayList[]
 
+}
+
+model PlayList {
+  id    String @id
+  name  String
+  image String
+
+
+  User   User   @relation(fields: [id], references: [id])
+  userId String
+
+
+  musicas Musicas[]
+
+}
+
+model Musicas {
+  id          String     @id
+  name        String
+  artist      String
+  imageUrl    String
+  preview_url String
+  playlist    PlayList[]
 }
