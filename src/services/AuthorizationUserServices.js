@@ -49,11 +49,14 @@ class AuthorizationUserServices{
         for( playlist of data.body.items){
         
           let tracks = await getPlaylistTracks(playlist.id , playlist.name)
-  
+      
           
         }
+        
         console.log(playlist.id , playlist.name , playlist.images)
 
+
+        
 
       
         
@@ -101,11 +104,11 @@ class AuthorizationUserServices{
                 image: image,
                 musicas:{
                   create:{
-                    id: '1',
-                    artist: "daniel",
-                    imageUrl: '5',
-                    name: "daniel",
-                    preview_url: "565"
+                    id: '5456',
+                    artist: 'Daniel',
+                    imageUrl: "image",
+                    name: 'Daniel',
+                    preview_url: 'preview'
                   }
                 }
               }
