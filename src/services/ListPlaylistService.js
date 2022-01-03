@@ -13,12 +13,14 @@ class ListPlaylistService{
 
 
     let playlist = {
+      userId: playListUser.userId,
       name: playListUser.name,
       image: playListUser.image,
       
     }
 
-    
+    return playlist
+
 
   }
 }

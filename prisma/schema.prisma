@@ -27,7 +27,6 @@ model PlayList {
   User   User   @relation(fields: [id], references: [id])
   userId String
 
-
   musicas Musicas[]
 
 }
@@ -38,5 +37,6 @@ model Musicas {
   artist      String
   imageUrl    String
   preview_url String
+  userId      String
   playlist    PlayList[]
 }

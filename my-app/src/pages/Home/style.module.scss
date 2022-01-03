@@ -1,0 +1,41 @@
+.containerHome{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .image{
+    margin-top: 80px;
+    margin-bottom: 50px;
+
+    &>img{
+      width: 270px;
+    }
+  }
+
+  a{
+    height: 70px;
+    padding: 0 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 30px;
+    background-color: #27CF74;
+    cursor: pointer;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-decoration: none;
+
+
+    &:hover{
+      transition: 0.8;
+      filter: brightness(0.9);
+    }
+  }
+
+
+
+}

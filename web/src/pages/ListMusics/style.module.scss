@@ -1,0 +1,24 @@
+.containerListMusic{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  main{
+    margin-right: 10rem;
+    .artist{
+      padding-bottom: 60px;
+      display: flex;
+      align-items: center;
+      p{
+        padding-left: 20px;
+      }
+
+      img{
+        height: 50px;
+        width: 50px;
+      }
+    }
+
+  }
+}
